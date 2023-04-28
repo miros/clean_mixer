@@ -1,7 +1,7 @@
 defmodule CleanMixer.MixProject do
   use Mix.Project
 
-  @source_url "https://github.com/funbox/clean_mixer"
+  @source_url "https://github.com/miros/clean_mixer"
   @version "0.11.3"
 
   def project do
