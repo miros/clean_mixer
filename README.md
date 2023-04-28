@@ -11,6 +11,9 @@
 Tools for code architecture analysis and validation.
 Heavily inspired by Bob Martin's “Clean Architecture” and to some extent ArchUnit library.
 
+> ## Warning
+> **Unfortunately, at the moment, CleanMixer is broken for recent elixir versions. I hope to find time to fix it soon.**
+
 ## Usage
 
 Add `:clean_mixer` to your list of dependencies in `mix.exs`:
@@ -251,5 +254,3 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
-
-[![Sponsored by FunBox](https://funbox.ru/badges/sponsored_by_funbox_centered.svg)](https://funbox.ru)
