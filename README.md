@@ -12,7 +12,7 @@ Tools for code architecture analysis and validation.
 Heavily inspired by Bob Martin's “Clean Architecture” and to some extent ArchUnit library.
 
 > ## Warning
-> **Unfortunately, at the moment, CleanMixer is broken for recent elixir versions. I hope to find time to fix it soon.**
+> **Unfortunately CleanMixer is currently broken for recent elixir versions. I hope to find time to fix it soon.**
 
 ## Usage
 
