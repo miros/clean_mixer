@@ -2,6 +2,7 @@ defmodule CleanMixer.CodeMap.CodeModuleTest do
   use ExUnit.Case
 
   alias CleanMixer.CodeMap.CodeModule
+  alias CleanMixer.CodeMap.ModuleReference
 
   describe "behaviour?" do
     test "checks if module defines a behaviour" do
@@ -54,6 +55,14 @@ defmodule CleanMixer.CodeMap.CodeModuleTest do
 
     test "returns exported functions for erlang modules" do
       assert CodeModule.public_functions(:old_doge) == [say_hello: 0, ask_for_treat: 0]
+    end
+  end
+
+  describe "typespec_references/1" do
+    test "returns modules referenced in typespecs of given module" do
+      assert CodeModule.typespec_references(CodeModule) == [
+               ModuleReference.new(CleanMixer.CodeMap.ModuleReference, :typespec)
+             ]
     end
   end
 end

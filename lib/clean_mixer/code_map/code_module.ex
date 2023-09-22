@@ -1,4 +1,7 @@
 defmodule CleanMixer.CodeMap.CodeModule do
+  alias CleanMixer.CodeMap.ModuleReference
+  alias CleanMixer.CodeMap.Typespec
+
   @type name :: module()
 
   defstruct [:name, :path]
@@ -47,6 +50,17 @@ defmodule CleanMixer.CodeMap.CodeModule do
   def has_functions?(module_name) do
     load(module_name)
     public_functions(module_name) != []
+  end
+
+  @spec typespec_references(name) :: list(ModuleReference.t())
+  def typespec_references(module_name) do
+    load(module_name)
+
+    {:ok, specs} = Code.Typespec.fetch_specs(module_name)
+
+    specs
+    |> Enum.flat_map(&Typespec.referenced_modules/1)
+    |> Enum.map(&ModuleReference.new(&1, :typespec))
   end
 
   defp load(module_name) do
