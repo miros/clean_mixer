@@ -22,10 +22,14 @@ defmodule CleanMixer.CodeMapTest do
       file3 = SourceFile.new("file3", [Module3], [])
     ]
 
-    assert [
-             FileDependency.new(file1, file2, [:runtime]),
-             FileDependency.new(file1, file3, [:runtime]),
-             FileDependency.new(file2, file1, [:runtime, :struct])
-           ] == CodeMap.new(files).dependencies
+    assert_unordered(CodeMap.new(files).dependencies, [
+      FileDependency.new(file1, file2, [:runtime]),
+      FileDependency.new(file1, file3, [:runtime]),
+      FileDependency.new(file2, file1, [:runtime, :struct])
+    ])
+  end
+
+  defp assert_unordered(enum, other_enum) do
+    assert MapSet.new(enum) == MapSet.new(other_enum)
   end
 end

@@ -22,7 +22,6 @@ defmodule CleanMixer.MixProject do
       ],
       test_coverage: [tool: ExCoveralls],
       package: package(),
-      dialyzer: dialyzer(),
       docs: docs()
     ]
   end
@@ -40,7 +39,7 @@ defmodule CleanMixer.MixProject do
     [
       name: :clean_mixer,
       description: "Tools for code architecture analysis and linting",
-      files: ["lib", "priv", "mix.exs", "README*", "LICENSE"],
+      files: ["lib", "priv", "mix.exs", "README*", "LICENSE", "CHANGELOG.md"],
       maintainers: ["Miroslav Malkin"],
       licenses: ["Apache-2.0"],
       links: %{
@@ -53,7 +52,7 @@ defmodule CleanMixer.MixProject do
     [
       {:optimus, "~> 0.1.11"},
       {:dialyxir, "~> 1.0.0-rc.7", only: [:dev, :test], runtime: false},
-      {:excoveralls, "~> 0.11", only: :test},
+      {:excoveralls, "~> 0.17", only: :test},
       {:excoveralls_linter, "~> 0.0.1", only: :test},
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
       {:earmark, "~> 1.4", only: :dev, runtime: false}
@@ -67,16 +66,6 @@ defmodule CleanMixer.MixProject do
       "cover.html": ["coveralls.html"],
       "cover.detail": ["coveralls.detail --filter"]
     ]
-  end
-
-  defp dialyzer do
-    case System.get_env("DIALYZER_PLT_FILE") do
-      nil ->
-        []
-
-      file ->
-        [plt_file: {:no_warn, file}]
-    end
   end
 
   defp docs do

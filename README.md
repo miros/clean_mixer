@@ -1,12 +1,12 @@
 # Clean Mixer
 
-[![Build Status](https://travis-ci.org/funbox/clean_mixer.svg?branch=master)](https://travis-ci.org/funbox/clean_mixer)
-[![Coverage Status](https://coveralls.io/repos/github/funbox/clean_mixer/badge.svg?branch=master)](https://coveralls.io/github/funbox/clean_mixer?branch=master)
+[![Elixir CI](https://github.com/miros/clean_mixer/actions/workflows/elixir.yml/badge.svg)](https://github.com/miros/clean_mixer/actions/workflows/elixir.yml)
+[![Coverage Status](https://coveralls.io/repos/github/miros/clean_mixer/badge.svg?branch=master)](https://coveralls.io/github/miros/clean_mixer?branch=master)
 [![Module Version](https://img.shields.io/hexpm/v/clean_mixer.svg)](https://hex.pm/packages/clean_mixer)
 [![Hex Docs](https://img.shields.io/badge/hex-docs-lightgreen.svg)](https://hexdocs.pm/clean_mixer/)
 [![Total Download](https://img.shields.io/hexpm/dt/clean_mixer.svg)](https://hex.pm/packages/clean_mixer)
-[![License](https://img.shields.io/hexpm/l/clean_mixer.svg)](https://github.com/funbox/clean_mixer/blob/master/LICENSE)
-[![Last Updated](https://img.shields.io/github/last-commit/funbox/clean_mixer.svg)](https://github.com/funbox/clean_mixer/commits/master)
+[![License](https://img.shields.io/hexpm/l/clean_mixer.svg)](https://github.com/miros/clean_mixer/blob/master/LICENSE)
+[![Last Updated](https://img.shields.io/github/last-commit/miros/clean_mixer.svg)](https://github.com/miros/clean_mixer/commits/master)
 
 Tools for code architecture analysis and validation.
 Heavily inspired by Bob Martin's “Clean Architecture” and to some extent ArchUnit library.
