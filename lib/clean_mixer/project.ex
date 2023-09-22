@@ -31,10 +31,10 @@ defmodule CleanMixer.Project do
     }
   end
 
-  defp hex_packs() do
-    for app <- App.current_deps() do
-      %{name: "hex/#{app.name}", path: app.path, tags: [hex_pack: true]}
-    end
+  defp hex_packs do
+    App.current_deps()
+    |> Enum.filter(&String.starts_with?(&1.path, "deps/"))
+    |> Enum.map(fn app -> %{name: "hex/#{app.name}", path: app.path, tags: [hex_pack: true]} end)
   end
 
   defp make_arch_map(component_map, code_map) do

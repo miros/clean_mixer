@@ -22,6 +22,6 @@ defmodule CleanMixer.CompilerManifests.MixProject do
   end
 
   def apps(%__MODULE__{umbrella?: false}) do
-    [App.current()]
+    [App.current()] ++ App.poncho_project_apps()
   end
 end

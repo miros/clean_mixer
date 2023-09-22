@@ -34,8 +34,14 @@ defmodule CleanMixer.CompilerManifests.App do
     }
   end
 
+  @spec poncho_project_apps() :: list(t)
+  def poncho_project_apps do
+    current_deps()
+    |> Enum.reject(&String.starts_with?(&1.path, "deps/"))
+  end
+
   @spec current_deps() :: list(t)
-  def current_deps() do
+  def current_deps do
     deps = Mix.Dep.load_on_environment(env: Mix.env())
 
     for %{app: app_name, opts: opts} <- deps, !umbrella_app?(opts) do
