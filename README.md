@@ -9,7 +9,7 @@
 [![Last Updated](https://img.shields.io/github/last-commit/miros/clean_mixer.svg)](https://github.com/miros/clean_mixer/commits/master)
 
 Tools for code architecture analysis and validation.
-Heavily inspired by Bob Martin's “Clean Architecture” and to some extent ArchUnit library.
+Heavily inspired by ideas from Evolutionary Architecture, ArchUnit library and Bob Martin's book “Clean Architecture”.
 
 ## Usage
 
