@@ -46,6 +46,34 @@ jobs:
 
           - elixir: 1.15.2
             otp_release: 26.0
+
+          # Elixir 1.16
+
+          - elixir: 1.16.3
+            otp_release: 24.3
+
+          - elixir: 1.16.3
+            otp_release: 25.3
+
+          - elixir: 1.16.3
+            otp_release: 26.2
+
+          # Elixir 1.17
+
+          - elixir: 1.17.3
+            otp_release: 25.3
+
+          - elixir: 1.17.3
+            otp_release: 26.2
+
+          - elixir: 1.17.3
+            otp_release: 27.1
+
+          # Elixir 1.18
+
+          - elixir: 1.18.3
+            otp_release: 27.3
+
     env:
       MIX_ENV: test
     steps:
@@ -56,7 +84,7 @@ jobs:
         elixir-version: ${{ matrix.elixir }}
         otp-version: ${{ matrix.otp_release }}
     - name: Restore dependencies cache
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: deps
         key: ${{ matrix.elixir }}-${{ matrix.otp_release }}-${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
@@ -81,13 +109,13 @@ jobs:
         elixir-version: '1.14.5'
         otp-version: '25.3'
     - name: Restore dependencies cache
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: deps
         key: ${{ matrix.elixir }}-${{ matrix.otp_release }}-${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
     - name: Cache PLT
       id: cache-plt
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: |
           _build/test/*.plt
