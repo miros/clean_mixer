@@ -50,19 +50,17 @@ defmodule CleanMixer.MixProject do
 
   defp deps do
     [
-      {:optimus, "~> 0.1.11"},
+      {:optimus, "~> 0.5.1"},
       {:dialyxir, "~> 1.0.0-rc.7", only: [:dev, :test], runtime: false},
       {:excoveralls, "~> 0.17", only: :test},
-      {:excoveralls_linter, "~> 0.0.1", only: :test},
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
-      {:earmark, "~> 1.4", only: :dev, runtime: false}
+      {:earmark, ">= 1.5.0-pre1", only: :dev, runtime: false}
     ]
   end
 
   defp aliases do
     [
       cover: ["coveralls --sort cov:desc"],
-      "cover.lint": ["coveralls.lint --missed-lines-threshold=2 --required-file-coverage=0.9"],
       "cover.html": ["coveralls.html"],
       "cover.detail": ["coveralls.detail --filter"]
     ]

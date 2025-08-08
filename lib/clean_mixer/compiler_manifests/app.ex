@@ -42,7 +42,12 @@ defmodule CleanMixer.CompilerManifests.App do
 
   @spec current_deps() :: list(t)
   def current_deps do
-    deps = Mix.Dep.load_on_environment(env: Mix.env())
+    deps =
+      if Version.match?(System.version(), ">= 1.16.0") do
+        apply(Mix.Dep.Converger, :converge, [[env: Mix.env()]])
+      else
+        apply(Mix.Dep.Converger, :converge, [nil, nil, [env: Mix.env()], &{&1, &2, &3}]) |> elem(0)
+      end
 
     for %{app: app_name, opts: opts} <- deps, !umbrella_app?(opts) do
       %__MODULE__{

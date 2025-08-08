@@ -9,7 +9,7 @@ defmodule CleanMixer.CompilerManifests.XrefSource do
   def get(apps) do
     xref = init_xref(apps)
 
-    {:ok, function_calls} = Xref.q(xref, 'XC')
+    {:ok, function_calls} = Xref.q(xref, ~c"XC")
 
     function_calls
     |> Enum.map(&to_file_dependency/1)

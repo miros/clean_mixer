@@ -7,14 +7,25 @@ defmodule CleanMixer.CompilerManifests.Manifest do
 
   @spec parse({modules :: list(term), sources :: list(term)}) :: list(SourceFile.t())
   def parse({module_items, source_items}) do
-    modules = manifest_modules(module_items)
+    modules = module_items |> Enum.map(&parse_module_record/1) |> Enum.reject(&is_nil/1)
     manifest_files(source_items, modules)
   end
 
-  defp manifest_modules(items) do
-    for Compiler.module(sources: [path | _], module: name) <- items do
-      CodeModule.new(name, path)
-    end
+  defp parse_module_record({name, Compiler.module(sources: [path | _])}) do
+    CodeModule.new(name, path)
+  end
+
+  defp parse_module_record(module_record)
+       when is_tuple(module_record) and
+              tuple_size(module_record) >= 6 and
+              elem(module_record, 0) == :module do
+    name = elem(module_record, 1)
+    [path | _] = elem(module_record, 3)
+    CodeModule.new(name, path)
+  end
+
+  defp parse_module_record(_module_record) do
+    nil
   end
 
   defp manifest_files(items, all_manifest_modules) do
@@ -22,7 +33,14 @@ defmodule CleanMixer.CompilerManifests.Manifest do
   end
 
   defp source_file_for(source_item, all_manifest_modules) do
-    source_params = Compiler.source(source_item)
+    source_params =
+      case source_item do
+        {source, source_item} ->
+          source_item |> Compiler.source() |> Keyword.put(:source, source)
+
+        source_item ->
+          Compiler.source(source_item)
+      end
 
     references =
       references_of(:compile, source_params[:compile_references]) ++
