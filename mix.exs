@@ -2,7 +2,7 @@ defmodule CleanMixer.MixProject do
   use Mix.Project
 
   @source_url "https://github.com/miros/clean_mixer"
-  @version "0.11.5"
+  @version "0.12.0"
 
   def project do
     [
