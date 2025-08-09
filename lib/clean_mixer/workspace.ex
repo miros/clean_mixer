@@ -14,7 +14,7 @@ defmodule CleanMixer.Workspace do
   @opaque t :: {pid, options}
   @type project_action :: (Project.t() -> any)
 
-  @default_options [timeout_ms: 15_000]
+  @default_options [timeout_ms: :infinity]
 
   @spec new(Project.t(), options) :: t
   def new(project, options \\ []) do
