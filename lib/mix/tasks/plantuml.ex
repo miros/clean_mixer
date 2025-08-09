@@ -30,7 +30,7 @@ defmodule Mix.Tasks.CleanMixer.Plantuml do
     dependency_metrics = MetricsMap.compute_dep_metrics(arch_map, component_metrics)
 
     PlantUMLRenderer.render(arch_map, component_metrics, dependency_metrics, params)
-    |> render_image(plantuml_file_name(params[:output_file]))
+    |> render_image(plantuml_file_name(params[:output_file]), params[:max_image_size])
 
     Mix.Shell.IO.info("image file created at #{image_file_name(params[:output_file])}")
   end
@@ -60,6 +60,13 @@ defmodule Mix.Tasks.CleanMixer.Plantuml do
             short: "-o",
             help: "Output file name.",
             default: @default_file_name,
+            required: false
+          ],
+          max_image_size: [
+            value_name: "MAX_IMAGE_SIZE",
+            long: "--max-image-size",
+            help: "Maximum image size (width or height)",
+            default: 32_768,
             required: false
           ]
         ] ++ ArchMapFilter.cli_options(),
@@ -93,9 +100,9 @@ defmodule Mix.Tasks.CleanMixer.Plantuml do
     ArchMap.except(arch_map, components_to_skip)
   end
 
-  defp render_image(uml_data, filename) do
+  defp render_image(uml_data, filename, max_image_size) do
     File.write!(filename, uml_data)
-    Mix.Shell.IO.cmd("env PLANTUML_LIMIT_SIZE=16384 java -jar #{planutml_jar_path()} #{filename}")
+    Mix.Shell.IO.cmd("env PLANTUML_LIMIT_SIZE=#{max_image_size} java -jar #{planutml_jar_path()} #{filename}")
   end
 
   defp planutml_jar_path() do
